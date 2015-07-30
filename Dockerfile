@@ -15,8 +15,9 @@ USER makepkg
 WORKDIR /tmp/makepkg
 RUN git clone https://github.com/CGAL/doxygen.git && \
     cd doxygen && ./configure && \
-    make && make install
+    make
 USER root
+RUN cd /tmp/makepkg/doxygen && make install
 
 COPY ./docker_entrypoint.sh /
 ENTRYPOINT ["/docker_entrypoint.sh"]
