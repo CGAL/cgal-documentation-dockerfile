@@ -13,5 +13,6 @@ Example Usage:
                cgal-doxygen
 
     # Extract the created documentation
-    docker cp container_id:/cgal_build/
-
+    docker cp container_id:/cgal_build/doc_output /tmp/doc_output
+    # Extract the documentation testsuite
+    docker cp container_id:/cgal_build/doc_log /tmp/doc_log
