@@ -8,6 +8,7 @@ RUN pacman -Syy && pacman -S --noconfirm \
     graphviz \
     python2 \
     python2-pyquery \
+    texlive-bin \
     && \
     pacman -Scc --noconfirm
 
