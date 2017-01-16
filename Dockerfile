@@ -10,17 +10,6 @@ RUN  apt-get update \
      texlive-binaries \
   && apt-get clean -y \
 
-#RUN pacman -Syy && pacman -S --noconfirm \
-#    bison \
-#    flex \
- #   git \
- #   graphviz \
- #   python2 \
- #   python2-pyquery \
- #   texlive-bin \
- #   && \
- #   pacman -Scc --noconfirm
-
 USER makepkg
 WORKDIR /tmp/makepkg
 
