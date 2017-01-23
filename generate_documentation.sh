@@ -8,11 +8,11 @@ PATH_TO_IMAGE="$1"
 PATH_TO_CGAL="$2"
 
 #build docker image
-#docker build -t cgal_doc $PATH_TO_IMAGE
+docker build -t cgal_doc $PATH_TO_IMAGE
 #generate documentation
-#docker run -v "$PATH_TO_CGAL":/mnt/cgal -t cgal_doc /docker_entrypoint.sh cgal_build_documentation
+docker run -v "$PATH_TO_CGAL":/mnt/cgal -t cgal_doc /docker_entrypoint.sh cgal_build_documentation
 #run second time to link
-#docker run -v "$PATH_TO_CGAL":/mnt/cgal -t cgal_doc /docker_entrypoint.sh cgal_build_documentation
+docker run -v "$PATH_TO_CGAL":/mnt/cgal -t cgal_doc /docker_entrypoint.sh cgal_build_documentation
 #create output directories
 DIR_LIST=(master 1_8_13 doxygen_master)
 DOCKER_ID=$(docker ps -l -aqf "ancestor=cgal_doc")
