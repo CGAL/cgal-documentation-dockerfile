@@ -12,8 +12,9 @@ RUN  apt-get update \
 
 WORKDIR /tmp/makepkg
 
-RUN git clone https://github.com/CGAL/doxygen.git cgal_master && \
-    cd cgal_master && \
+RUN git clone https://github.com/CGAL/doxygen.git cgal_1_8_4 && \
+    cd cgal_1_8_4 && \
+    git checkout release_1_8_4_patched && \
     ./configure && \
     make
 

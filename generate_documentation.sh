@@ -14,7 +14,7 @@ docker run -v "$PATH_TO_CGAL":/mnt/cgal -t cgal_doc /docker_entrypoint.sh cgal_b
 #run second time to link
 docker run -v "$PATH_TO_CGAL":/mnt/cgal -t cgal_doc /docker_entrypoint.sh cgal_build_documentation
 #create output directories
-DIR_LIST=(master 1_8_13 doxygen_master)
+DIR_LIST=(1_8_4 1_8_13 doxygen_master)
 DOCKER_ID=$(docker ps -l -aqf "ancestor=cgal_doc")
 for dir in ${DIR_LIST[*]}
 do
