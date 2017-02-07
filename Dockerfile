@@ -9,8 +9,8 @@ RUN  apt-get update \
      python-pyquery \
      texlive-binaries \
   && apt-get clean -y \
-
-WORKDIR /tmp/makepkg
+RUN mkdir /doxygen
+WORKDIR /doxygen
 
 RUN git clone https://github.com/CGAL/doxygen.git cgal_1_8_4 && \
     cd cgal_1_8_4 && \
@@ -23,10 +23,14 @@ RUN  apt-get update \
   && apt-get clean -y 
 RUN git clone https://github.com/CGAL/doxygen.git 1_8_13 \
  && cd 1_8_13 && git checkout release_1_8_13_patched && \
+    cat VERSION && \
     mkdir build && \
     cd build && \
     cmake .. && \
-    make
+    make 
+
+
+
 
 RUN git clone https://github.com/doxygen/doxygen.git doxygen_master && \
     cd doxygen_master && \
@@ -36,7 +40,7 @@ RUN git clone https://github.com/doxygen/doxygen.git doxygen_master && \
     make
 
 USER root
-RUN cd /tmp/makepkg/cgal_master && make install
+RUN cd cgal_1_8_4 && make install
 
 COPY ./docker_entrypoint.sh /
 ENTRYPOINT ["/docker_entrypoint.sh"]
