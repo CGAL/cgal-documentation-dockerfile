@@ -12,35 +12,38 @@ RUN  apt-get update \
 RUN mkdir /doxygen
 WORKDIR /doxygen
 
-RUN git clone https://github.com/CGAL/doxygen.git cgal_1_8_4 && \
-    cd cgal_1_8_4 && \
+RUN git clone https://github.com/CGAL/doxygen.git cgal_dox && \
+    mkdir cgal_1_8_4 cgal_1_8_13 && \
+    cd cgal_dox && \
     git checkout release_1_8_4_patched && \
     ./configure && \
-    make
+    make && \
+    cp bin/doxygen ../cgal_1_8_4 && \
+    rm VERSION && \
+    git clean -f -X -d
 
 RUN  apt-get update \
   && apt-get install -y flex \
   && apt-get clean -y 
-RUN git clone https://github.com/CGAL/doxygen.git 1_8_13 \
- && cd 1_8_13 && git checkout release_1_8_13_patched && \
-    cat VERSION && \
+RUN cd cgal_dox && git checkout release_1_8_13_patched && \
     mkdir build && \
     cd build && \
     cmake .. && \
-    make 
+    make && \
+    cp bin/doxygen ../../cgal_1_8_13 && \
+    cd ../.. && rm -rf ./cgal_dox
 
 
-
-
-RUN git clone https://github.com/doxygen/doxygen.git doxygen_master && \
-    cd doxygen_master && \
-    mkdir build && \
-    cd build && \
-    cmake .. && \
-    make
+#RUN git clone https://github.com/doxygen/doxygen.git doxygen_master && \
+#    cd doxygen_master && \
+#    mkdir build && \
+#    cd build && \
+#    cmake .. && \
+#    make && \
+#    cp bin/doxygen ../../master && \
+#    cd ../.. && rm -rf doxygen_master
 
 USER root
-RUN cd cgal_1_8_4 && make install
 
 COPY ./docker_entrypoint.sh /
 ENTRYPOINT ["/docker_entrypoint.sh"]
