@@ -5,7 +5,7 @@ RUN  apt-get update \
      git \
      flex-old \
      graphviz \
-     python2.7 \
+     python3.5 \
      python-pyquery \
      texlive-binaries \
   && apt-get clean -y \
