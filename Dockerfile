@@ -5,8 +5,8 @@ RUN  apt-get update \
      git \
      flex-old \
      graphviz \
-     python3.5 \
-     python-pyquery \
+     python3 \
+     python3-pyquery \
      texlive-binaries \
   && apt-get clean -y \
 RUN mkdir /doxygen
