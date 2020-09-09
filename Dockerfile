@@ -3,31 +3,29 @@ MAINTAINER Philipp Moeller <bootsarehax@gmail.com>
 RUN  apt-get update \
   && apt-get install -y bison \
      git \
-     flex-old \
+     flex \
      graphviz \
      python3 \
      python3-pyquery \
      texlive-binaries \
-  && apt-get clean -y \
+  && apt-get clean -y 
+  
 RUN mkdir /doxygen
 WORKDIR /doxygen
 
 RUN git clone https://github.com/CGAL/doxygen.git cgal_dox && \
-    mkdir cgal_1_8_4 cgal_1_8_13 && \
+    mkdir cgal_1_8_14 cgal_1_8_13 && \
     cd cgal_dox && \
-    git checkout release_1_8_4_patched && \
-    ./configure && \
-    make && \
-    cp bin/doxygen ../cgal_1_8_4 && \
-    rm VERSION && \
-    git clean -f -X -d
-
-RUN  apt-get update \
-  && apt-get install -y flex \
-  && apt-get clean -y 
-RUN cd cgal_dox && git checkout release_1_8_13_patched && \
+    git checkout release_1_8_14_patched && \
     mkdir build && \
     cd build && \
+    cmake .. && \
+    make && \
+    cp bin/doxygen ../../cgal_1_8_14
+    
+RUN cd cgal_dox && git checkout release_1_8_13_patched && \
+    cd build && \
+    rm -rf ./* && \
     cmake .. && \
     make && \
     cp bin/doxygen ../../cgal_1_8_13 && \
