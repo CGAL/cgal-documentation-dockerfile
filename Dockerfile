@@ -14,32 +14,26 @@ RUN mkdir /doxygen
 WORKDIR /doxygen
 
 RUN git clone https://github.com/CGAL/doxygen.git cgal_dox && \
-    mkdir cgal_1_8_14 cgal_1_8_13 && \
+    mkdir cgal_1_8_13 && \
     cd cgal_dox && \
-    git checkout release_1_8_14_patched && \
+    git checkout release_1_8_13_patched && \
     mkdir build && \
     cd build && \
     cmake .. && \
     make && \
-    cp bin/doxygen ../../cgal_1_8_14
+    cp bin/doxygen ../../cgal_1_8_13
     
-RUN cd cgal_dox && git checkout release_1_8_13_patched && \
+
+    
+RUN git clone https://github.com/doxygen/doxygen.git doxygen_1_8_18 && \
+    cd doxygen_1_8_18 && \
+    git checkout Release_1_8_18 && \
+    mkdir build && \
     cd build && \
-    rm -rf ./* && \
     cmake .. && \
     make && \
-    cp bin/doxygen ../../cgal_1_8_13 && \
-    cd ../.. && rm -rf ./cgal_dox
-
-
-#RUN git clone https://github.com/doxygen/doxygen.git doxygen_master && \
-#    cd doxygen_master && \
-#    mkdir build && \
-#    cd build && \
-#    cmake .. && \
-#    make && \
-#    cp bin/doxygen ../../master && \
-#    cd ../.. && rm -rf doxygen_master
+#     cp bin/doxygen ../../1_8_18 && \
+    cd ../.. && rm -rf doxygen_1_8_18
 
 USER root
 
