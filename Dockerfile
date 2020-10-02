@@ -6,10 +6,11 @@ RUN  apt-get update \
      flex \
      graphviz \
      python3 \
+     python2 \
      python3-pyquery \
      texlive-binaries \
-  && apt-get clean -y 
-  
+  && apt-get clean -y
+
 RUN mkdir /doxygen
 WORKDIR /doxygen
 
@@ -21,19 +22,21 @@ RUN git clone https://github.com/CGAL/doxygen.git cgal_dox && \
     cd build && \
     cmake .. && \
     make && \
-    cp bin/doxygen ../../cgal_1_8_13
-    
+    cp bin/doxygen ../../cgal_1_8_13 && \
+    cd ../../ && rm -rf cgal_dox
 
-    
-RUN git clone https://github.com/doxygen/doxygen.git doxygen_1_8_18 && \
-    cd doxygen_1_8_18 && \
+
+
+RUN git clone https://github.com/doxygen/doxygen.git off_dox && \
+    mkdir cgal_1_8_18 && \
+    cd off_dox && \
     git checkout Release_1_8_18 && \
     mkdir build && \
     cd build && \
     cmake .. && \
     make && \
-#     cp bin/doxygen ../../1_8_18 && \
-    cd ../.. && rm -rf doxygen_1_8_18
+    cp bin/doxygen ../../cgal_1_8_18 && \
+    cd ../../ && rm -rf off_dox
 
 USER root
 
