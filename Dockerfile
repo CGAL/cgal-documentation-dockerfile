@@ -6,7 +6,6 @@ RUN  apt-get update \
      flex \
      graphviz \
      python3 \
-     python2 \
      python3-pyquery \
      texlive-binaries \
   && apt-get clean -y
