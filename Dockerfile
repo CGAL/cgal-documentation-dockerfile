@@ -27,14 +27,14 @@ RUN git clone https://github.com/CGAL/doxygen.git cgal_dox && \
 
 
 RUN git clone https://github.com/doxygen/doxygen.git off_dox && \
-    mkdir cgal_1_8_18 && \
+    mkdir cgal_1_9_1 && \
     cd off_dox && \
-    git checkout Release_1_8_18 && \
+    git checkout Release_1_9_1 && \
     mkdir build && \
     cd build && \
     cmake .. && \
     make && \
-    cp bin/doxygen ../../cgal_1_8_18 && \
+    cp bin/doxygen ../../cgal_1_9_1 && \
     cd ../../ && rm -rf off_dox
 
 USER root
