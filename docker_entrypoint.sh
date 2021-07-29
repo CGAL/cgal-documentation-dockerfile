@@ -2,13 +2,11 @@
 set -e
 
 if [ "$1" = 'cgal_build_documentation' ]; then
-    mkdir /cgal_build
-    cd /cgal_build
-    cmake -DBUILD_DOC:BOOL=ON \
-          -DCGAL_DOC_CREATE_LOGS:BOOL=ON \
-          /mnt/cgal
-    make doc
-    make Documentation_test
+    ln -s /bin/python3 /bin/python
+    cd /mnt/cgal/Documentation/doc/scripts/
+    mkdir -p $PWD/doc_1_8_13
+    mkdir -p $PWD/doc_1_9_1
+    bash ./process_doc.sh "/doxygen/cgal_1_8_13/doxygen" "/doxygen/cgal_1_9_1/doxygen" /testsuite_out
 else
     exec "$@"
 fi

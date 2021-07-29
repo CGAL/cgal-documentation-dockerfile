@@ -7,12 +7,9 @@ It requires a single user mounted volume containing the CGAL tree to be used, `/
 
 Example Usage:
 
-    # Build or pull the image
-    docker build -t cgal-doxygen .
-    docker run -v /path/to/cgal:/mnt/cgal \
-               cgal-doxygen
-
-    # Extract the created documentation
-    docker cp container_id:/cgal_build/doc_output /tmp/doc_output
-    # Extract the documentation testsuite
-    docker cp container_id:/cgal_build/doc_log /tmp/doc_log
+    #call the script 
+    `./generate_documentation.sh <path_to_image> <path_to_cgal> <path_to_publish_dir>`
+    where 
+    - `path_to_image` is the absolute path to the directory containing the dockerfile
+    - `path_to_cgal` is the absolute path to the root directory of CGAL
+    - `path_to_publish_dir` is the absolute path to the output directory, that will contain the 3 versions and the result of the comparison. 
