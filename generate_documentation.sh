@@ -10,4 +10,4 @@ PATH_TO_PUBLISH="$3"
 #build docker image
 docker build -t cgal_documentation:comparison $PATH_TO_IMAGE
 #generate documentation
-docker run -v "$PATH_TO_CGAL":/mnt/cgal -v "$PATH_TO_PUBLISH":/testsuite_out -t cgal_documentation:comparison
+docker run -v "$PATH_TO_CGAL":/mnt/cgal:z -v "$PATH_TO_PUBLISH":/testsuite_out:z -t cgal_documentation:comparison
