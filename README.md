@@ -12,4 +12,4 @@ Example Usage:
     where 
     - `path_to_image` is the absolute path to the directory containing the dockerfile
     - `path_to_cgal` is the absolute path to the root directory of CGAL
-    - `path_to_publish_dir` is the absolute path to the output directory, that will contian the 3 versions and the result of the comparison. 
+    - `path_to_publish_dir` is the absolute path to the output directory, that will contain the 3 versions and the result of the comparison. 
